@@ -1,9 +1,9 @@
-import Navbar from './components/navbar'
+import Navbar from './components/NavbarComponent'
 import {useState, useEffect} from 'react'
 import useStore from './store/store.js'
 import './input.css'
 import sound from './sound/sound.wav'
-import Loading from './components/loading.js'
+import Loading from './components/LoadingComponent.js'
 
  
 

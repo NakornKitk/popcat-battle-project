@@ -1,10 +1,22 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import gitIcon from '../images/github-icon.png'
 import LinkedinIcon from "../images/linkedin-square-icon.png";
 
 function navbar() {
   return (
      <div className="static bottom-0 px-[20px] py-[20px]">
+        <div className = "flex">
+            <p className="nav-item pr-3 pb-3">
+                <Link to="/" className="nav-link">home page</Link>
+            </p>
+            <p className="nav-item pr-3 pb-3">
+                <Link to="/login" className="nav-link">login</Link>
+            </p>
+            <p className="nav-item pr-3 pb-3">
+                <Link to="/leaderboard" className="nav-link">Leaderboard</Link>
+            </p>
+        </div>
         <div className="flex justify-between">
             <a className="bg-white rounded-[100%] w-[70px] h-[70px] md:w-[80px] md:h-[80px]" href="https://github.com/NakornKitk?tab=repositories">
                 <img className="w-12 my-[10px] md:w-16 md:my-[7px] mx-[auto]  hover:scale-110 transform transition duration-2" src={gitIcon} alt="" />
