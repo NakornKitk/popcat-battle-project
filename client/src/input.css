@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.londrina-outline-regular {
+    font-family: "Londrina Outline", sans-serif;
+    font-weight: 600;
+  }
+
+
+.bg-image-1 {
+    background-image: url('./images/image1.jpg');
+}
+
+.bg-image-2 {
+    background-image: url('./images/image2.jpg');
+}
