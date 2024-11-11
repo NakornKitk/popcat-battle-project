@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 require("dotenv").config()
 const cors=require("cors");
-const countRoute = require('./routes/countRoute')
+const userRoute = require('./routes/userRoute')
 
 
 const app = express()
@@ -15,8 +15,8 @@ const corsOptions ={
 }
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
-//connect cloud database
-mongoose.connect(process.env.MONGODB_URI, {
+// connect cloud database
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: false
 })
@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 .catch((err) => console.log(err))
 
 
-app.use('/api',countRoute)
+app.use('/api',userRoute)
 
 
 const port = process.env.PORT || 8080

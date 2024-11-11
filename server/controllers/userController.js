@@ -1,10 +1,10 @@
-const Countmodel = require('../models/count')
+const userModel = require('../models/user')
 
 
 exports.add = async (req,res)=>{
     try {
         // Find the latest document in the Count collection
-        let count = await Countmodel.findOne().sort({ _id: -1 });
+        let count = await userModel.findOne().sort({ _id: -1 });
 
         // If no document exists, create the first one with numCount = 1
         if (!count) {
@@ -33,7 +33,7 @@ exports.add = async (req,res)=>{
 
 exports.get = async (req,res) =>{
     try {
-        let count = await Countmodel.findOne().sort({ _id: -1 });
+        let count = await userModel.findOne().sort({ _id: -1 });
         
         res.status(200).json({
             message: 'GET successfully',

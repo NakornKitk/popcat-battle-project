@@ -1,6 +1,6 @@
 const express = require("express")
 const router =  express.Router()
-const {add,get} = require('../controllers/countController')
+const {add,get} = require('../controllers/userController')
 
 
 router.put('/add',add)

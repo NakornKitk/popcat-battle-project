@@ -1,13 +1,13 @@
 import Navbar from './components/NavbarComponent'
 import {useState, useEffect} from 'react'
 import useStore from './store/store.js'
-import './input.css'
 import sound from './sound/sound.wav'
 import Loading from './components/LoadingComponent.js'
 
  
 
 function App() {
+  let [userName, setUserName] = useState('')
   let [count,setCount] = useState('')
   let {localCount,setlocalCount} = useStore()
   const [isImageOne, setIsImageOne] = useState(true);
@@ -60,13 +60,16 @@ function App() {
     <div className={isImageOne ? 'bg-image-1 h-[100vh] bg-top bg-cover' : 'bg-image-2 h-[100vh] bg-top bg-cover'} onClick={incrementClick} >
       <Navbar/>
       {loading ? (<Loading />) : (
-        <div>
-          <div className="londrina-outline-regular h-[95%] w-[100%]">
-            <p className="text-center text-[70px] md:text-[50px]">{localCount}</p>
+        <div className="w-[100%]">
+          <div className="px-[20px]">
+            <p className="text-start text-[20px] md:text-[30px]">UserName: {userName}</p>
           </div>
-          <div className="text-4xl w-[100%] bg-white fixed bottom-0">
-            <p className="text-center p-[10px] londrina-outline-regular">
-              All time clicks: {count} times
+          <div className="londrina-outline-regular">
+            <p className="text-center text-[70px] pt-[30px]">{localCount}</p>
+          </div>
+          <div className="text-3xl md:text-4xl w-[100%] bg-white fixed bottom-0">
+            <p className="text-center p-[10px]">
+              Highest clicks: {count}
             </p>
           </div>
         </div>
