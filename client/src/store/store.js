@@ -11,7 +11,7 @@ let store = (set) => ({
 
 
 
-store = persist(store, {name: "Local-pop-count"})
+store = persist(store, {name: "Local-pop-battle-count"})
 let useStore = create(store)
 
 export default useStore;

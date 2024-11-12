@@ -1,48 +1,76 @@
+const slugify = require("slugify")
 const userModel = require('../models/user')
+const { v4: uuidv4 } = require('uuid')
 
 
-exports.add = async (req,res)=>{
-    try {
-        // Find the latest document in the Count collection
-        let count = await userModel.findOne().sort({ _id: -1 });
-
-        // If no document exists, create the first one with numCount = 1
-        if (!count) {
-            count = new Count({ numCount: 1 });
-        } else {
-            // Otherwise, increment numCount by 1
-            count.numCount += 1;
-        }
-
-        // Save the updated count
-        await count.save();
-
-        // Send a success response with the updated count
-        res.status(200).json({
-            message: 'Count incremented successfully',
-            data: count,
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: 'Error incrementing count',
-            error: error.message,
-        });
-    }
+exports.gettoptenleader = async (req, res) => {
+    userModel.find({}).sort({ clicks: -1 }).limit(10).exec()
+        .then((data) => {
+            res.json(data)
+        })
+        .catch((err) => {
+            res.status(400).json({ error: err })
+        })
 }
 
 
-exports.get = async (req,res) =>{
-    try {
-        let count = await userModel.findOne().sort({ _id: -1 });
-        
-        res.status(200).json({
-            message: 'GET successfully',
-            data: count,
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: 'Error GET',
-            error: error.message,
-        });
+exports.gethighestleader = async (req, res) => {
+    userModel.find({}).sort({ clicks: -1 }).limit(1).exec()
+        .then((data) => {
+            res.json(data)
+        })
+        .catch((err) => {
+            res.status(400).json({ error: err })
+        })
+}
+
+
+exports.getuser = (req, res) => {
+    const { slug } = req.params
+    userModel.findOne({ slug }).exec()
+        .then((data) => {
+            res.json(data)
+        })
+        .catch((err) => {
+            res.status(400).json({ error: err })
+        })
+}
+
+
+
+exports.create = async (req, res) => {
+    const { name, password } = req.body
+    let slug = slugify(name)
+
+    if (!slug) slug = uuidv4();
+
+    switch (true) {
+        case !name:
+            return res.status(400).json({ error: "Please insert username" });
+            break;
+        case !password:
+            return res.status(400).json({ error: "Please insert username" });
     }
+
+    userModel.create({ name, password, slug })
+        .then((data) => {
+            res.json(data)
+        })
+        .catch((err) => {
+            res.status(400).json({ error: err })
+        })
+}
+
+
+exports.add = async (req, res) => {
+    const { slug } = req.params
+    userModel.findOneAndUpdate({ slug }, { $inc: { clicks: 1 } }, { new: true }).exec()
+        .then(() => {
+            res.json({
+                message: "data already update"
+            })
+        })
+        .catch((err) => {
+            res.status(400).json({ error: err })
+        })
 }

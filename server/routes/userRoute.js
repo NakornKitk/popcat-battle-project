@@ -1,10 +1,14 @@
 const express = require("express")
 const router =  express.Router()
-const {add,get} = require('../controllers/userController')
+const {create,add,gettoptenleader,gethighestleader,getuser} = require('../controllers/userController')
 
 
-router.put('/add',add)
-router.get('/get',get)
+
+router.post('/create',create)
+router.get('/gettoptenleader',gettoptenleader)
+router.get('/gethighestleader',gethighestleader)
+router.get('/getuser/:slug',getuser)
+router.put('/add/:slug',add)
 
 
 module.exports=router

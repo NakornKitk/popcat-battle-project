@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const slugify = require("slugify")
 
 const userSchema = mongoose.Schema(
     {
@@ -24,4 +25,4 @@ const userSchema = mongoose.Schema(
 )
 
 
-module.exports = mongoose.model("Users",userSchema)
+module.exports = mongoose.model("users",userSchema)
