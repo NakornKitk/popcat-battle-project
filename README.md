@@ -1,6 +1,6 @@
-# POPCAT Clicks Battle website &#128640; (under development)
+# POPCAT CLICKS BATTLE Website &#128640;
 
-POPCAT Clicks Battle website developed by using
+Clicking battle website developed by using
 - **FrontEnd:** ReactJS, TailwindCSS
 - **BackEnd:** NodeJS,ExpressJS
 - **Database:** MongoDB
@@ -8,7 +8,7 @@ POPCAT Clicks Battle website developed by using
 <br>
 
 <!-- Visit our website here.
-- [popcat-clone-project](https://popcat-clone-project.vercel.app/) -->
+- [popcat-battle-project](https://popcat-clone-project.vercel.app/) -->
 
 
 
