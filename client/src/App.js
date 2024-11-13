@@ -3,6 +3,7 @@ import axios from 'axios'
 import useStore from './store/store.js'
 import Navbar from './components/NavbarComponent'
 import Loading from './components/LoadingComponent.js'
+import LeaderboardButton from './components/LeaderboardButton.js'
 import sound from './sound/sound.wav'
 
 
@@ -32,7 +33,6 @@ function App() {
     axios.get(`${process.env.REACT_APP_API}/gethighestleader`)
       .then(response => {
         setLeader(response.data)
-        console.log(leader)
       })
       .catch(err => alert(err))
       .finally(() => {
@@ -41,11 +41,11 @@ function App() {
   }, [])
 
   return (
-    <div className={isImageOne ? 'bg-image-1 h-[100vh] bg-top bg-cover' : 'bg-image-2 h-[100vh] bg-top bg-cover'} onClick={incrementClick} >
+    <div className={isImageOne ? 'bg-image-1 h-[100vh] bg-top bg-cover' : 'bg-image-2 h-[100vh] bg-top bg-cover'} >
       <Navbar />
-
+      <LeaderboardButton/>
       {loading ? (<Loading />) : (
-        <div className="w-[100%] h-[65%] justify-between londrina-outline-regular">
+        <div className="w-[100%] h-[65%] justify-between londrina-outline-regular" onClick={incrementClick}>
           <div className="px-[20px]">
             <p className="text-start text-[30px] sm:text-[40px] w-[auto]">User: Guest</p>
           </div>

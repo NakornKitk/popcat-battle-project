@@ -1,13 +1,15 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import gitIcon from '../images/github-icon.png'
 import LinkedinIcon from "../images/linkedin-square-icon.png";
-import homeIcon from "../images/home-icon.svg";
-import loginIcon from "../images/male-icon.svg";
-import leaderIcon from "../images/leaderboard-icon.svg";
+import logoutIcon from "../images/sign-out-icon.svg";
+import loginIcon from "../images/log-in-icon.svg";
+import { getUser, logout } from '../services/authorize';
 
 function Navbar() {
-  return (
+    const navigate = useNavigate();
+
+    return (
      <div className="static w-[100%] top-0 px-[20px] pt-[10px]">
         <div className="grid grid-cols-3">
             <div className="sm:flex justify-self-start aligns-center">
@@ -27,21 +29,29 @@ function Navbar() {
             </div>
             <div className="flex justify-self-end">
                 <div className="sm:flex">
-                    <Link to="/" className="">
-                    <div className="bg-white rounded-[100%] w-[80px] h-[80px] ">
-                        <img className="w-14 pt-[10px] my-[10px]  mx-[auto] hover:scale-110 transform transition duration-2" src={homeIcon} alt="" />
-                    </div>
-                    </Link>
-                    <Link to="/login" className="ml-3 hidden md:block">
+                    <Link to="/leaderboard" className="mr-3 hidden md:block">
                         <div className="bg-white rounded-[100%] w-[80px] h-[80px]">
-                            <img className="w-14 pt-[7px] my-[10px] mx-[auto] hover:scale-110 transform transition duration-2" src={loginIcon} alt="" />
+                            <p className="my-[10px] mx-[auto] hover:scale-110 transform transition duration-2 text-center text-[50px]">&#127942;</p>
                         </div>
                     </Link>
-                    <Link to="/leaderboard" className="ml-3 hidden md:block">
-                        <div className="bg-white rounded-[100%] w-[80px] h-[80px]">
-                            <img className="w-14 pt-[20px] my-[10px] mx-[auto] hover:scale-110 transform transition duration-2" src={leaderIcon} alt="" />
-                        </div>
-                    </Link>
+                    {
+                        getUser() && (
+                            <Link to="/" className="">
+                                <div className="bg-white rounded-[100%] w-[80px] h-[80px]" onClick={() => logout(navigate("/"))}>
+                                    <img className="w-10 pt-[12px] my-[10px] mx-[auto] hover:scale-110 transform transition duration-2" src={logoutIcon} alt="" />
+                                </div>
+                            </Link>
+                        )
+                    }
+                    {
+                        !getUser() && (
+                            <Link to="/login" className="">
+                                <div className="bg-white rounded-[100%] w-[80px] h-[80px]">
+                                    <img className="w-10 pt-[12px] my-[10px] mx-[auto] hover:scale-110 transform transition duration-2" src={loginIcon} alt="" />
+                                </div>
+                            </Link>
+                        )
+                    }
                 </div>
             </div>
         </div>

@@ -3,6 +3,9 @@ const userModel = require('../models/user')
 const { v4: uuidv4 } = require('uuid')
 
 
+
+
+
 exports.gettoptenleader = async (req, res) => {
     userModel.find({}).sort({ clicks: -1 }).limit(10).exec()
         .then((data) => {
@@ -37,7 +40,6 @@ exports.getuser = (req, res) => {
 }
 
 
-
 exports.create = async (req, res) => {
     const { name, password } = req.body
     let slug = slugify(name)
@@ -49,7 +51,7 @@ exports.create = async (req, res) => {
             return res.status(400).json({ error: "Please insert username" });
             break;
         case !password:
-            return res.status(400).json({ error: "Please insert username" });
+            return res.status(400).json({ error: "Please insert password" });
     }
 
     userModel.create({ name, password, slug })
@@ -59,6 +61,7 @@ exports.create = async (req, res) => {
         .catch((err) => {
             res.status(400).json({ error: err })
         })
+        
 }
 
 
@@ -74,3 +77,4 @@ exports.add = async (req, res) => {
             res.status(400).json({ error: err })
         })
 }
+

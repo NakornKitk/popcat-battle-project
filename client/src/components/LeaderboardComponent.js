@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
 import Navbar from './NavbarComponent'
+import {Link} from 'react-router-dom'
 
 function LeaderboardComponent() {
   const [leaders, setLeaders] = useState([])
