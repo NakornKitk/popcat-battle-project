@@ -1,8 +1,8 @@
 {
     "rewrites": [
-        {
-            "source": "/popcat-battle-project/(.*)",
-            "destination": "index.html"
-        }
+      {
+        "source": "/(.*)",
+        "destination": "/index.html"
+      }
     ]
-}
+  }
