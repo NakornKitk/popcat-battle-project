@@ -33,7 +33,7 @@ function LoginComponent() {
     e.preventDefault();
     axios.post(`${process.env.REACT_APP_API}/login`, { name: stateLogin.name, password: stateLogin.password })
       .then(response => {
-        authenticate(response,navigate(`/popcat-battle-project/getuser/${stateLogin.name}`))
+        authenticate(response,navigate(`/getuser/${stateLogin.name}`))
         setStateLogin(
           {
             name: "",
@@ -83,7 +83,7 @@ function LoginComponent() {
   }
 
   useEffect(() => {
-    getUser() && navigate(`/popcat-battle-project/leaderboard`)
+    getUser() && navigate(`/leaderboard`)
   },[])
 
   return (
@@ -100,7 +100,7 @@ function LoginComponent() {
               <input className="bg-[#eee] border-0 py-3 px-4 my-2 w-full" type="password" id="loginpassword" name="password" placeholder="Password" required value={stateLogin.password} onChange={inputLoginValue("password")} /> <br />
               <input className="rounded-[20px] border border-white text-white text-xs font-bold px-11 py-3 my-2 tracking-wider uppercase bg-[#524339] active:scale-95" type="submit" value="SIGN IN" />
             </form>
-              <p className="text-[14px] text-[#A3A79E] underline cursor-pointer" onClick={() => navigate(`/popcat-battle-project/`)}>Sign in as a Guest</p>
+              <p className="text-[14px] text-[#A3A79E] underline cursor-pointer" onClick={() => navigate(`/`)}>Sign in as a Guest</p>
           </div>
           <div className="md:w-1/2 text-center px-6 py-[15%] bg-[#524339] md:rounded-br-[10px] md:rounded-tr-[10px] justify-center">
             <h1 className="font-bold text-[25px] font-sans text-white">Still dont have an account?</h1>

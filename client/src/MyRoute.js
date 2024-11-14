@@ -7,7 +7,7 @@ import GameComponent from "./components/GameComponent"
 
 const MyRoute = () => {
     return(
-        <BrowserRouter basename="/popcat-battle-project">
+        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}/>
                 <Route path="/login" element={<LoginComponent/>}/>
