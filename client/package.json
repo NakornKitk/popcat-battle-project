@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "/popcat-battle-project/",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
