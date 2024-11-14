@@ -1,6 +1,6 @@
 # POPCAT CLICKS BATTLE Website &#128640;
 
-Clicking battle website developed by using
+Clicking battle website with a logged in session, developed by using
 - **FrontEnd:** ReactJS, TailwindCSS
 - **BackEnd:** NodeJS, ExpressJS
 - **Database:** MongoDB
