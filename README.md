@@ -7,8 +7,8 @@ Clicking battle website developed by using
 
 <br>
 
-<!-- Visit our website here.
-- [popcat-battle-project](https://popcat-clone-project.vercel.app/) -->
+Visit our website here.
+- [popcat-battle-project](https://popcat-battle-project.vercel.app/)
 
 
 
