@@ -29,14 +29,14 @@ function Navbar() {
             </div>
             <div className="flex justify-self-end">
                 <div className="sm:flex">
-                    <Link to="/leaderboard" className="mr-3 hidden md:block">
+                    <Link to="/popcat-battle-project/leaderboard" className="mr-3 hidden md:block">
                         <div className="bg-white rounded-[100%] w-[80px] h-[80px]">
                             <p className="my-[10px] mx-[auto] hover:scale-110 transform transition duration-2 text-center text-[50px]">&#127942;</p>
                         </div>
                     </Link>
                     {
                         getUser() && (
-                            <Link to="/" className="">
+                            <Link to="/popcat-battle-project/" className="">
                                 <div className="bg-white rounded-[100%] w-[80px] h-[80px]" onClick={() => logout(navigate("/"))}>
                                     <img className="w-10 pt-[12px] my-[10px] mx-[auto] hover:scale-110 transform transition duration-2" src={logoutIcon} alt="" />
                                 </div>
@@ -45,7 +45,7 @@ function Navbar() {
                     }
                     {
                         !getUser() && (
-                            <Link to="/login" className="">
+                            <Link to="/popcat-battle-project/login" className="">
                                 <div className="bg-white rounded-[100%] w-[80px] h-[80px]">
                                     <img className="w-10 pt-[12px] my-[10px] mx-[auto] hover:scale-110 transform transition duration-2" src={loginIcon} alt="" />
                                 </div>

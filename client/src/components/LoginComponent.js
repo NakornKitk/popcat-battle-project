@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Navbar from './NavbarComponent'
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { authenticate } from '../services/authorize';
 import { getUser } from '../services/authorize';
 import LeaderboardButton from './LeaderboardButton.js'
@@ -33,7 +33,7 @@ function LoginComponent() {
     e.preventDefault();
     axios.post(`${process.env.REACT_APP_API}/login`, { name: stateLogin.name, password: stateLogin.password })
       .then(response => {
-        authenticate(response,navigate(`/getuser/${stateLogin.name}`))
+        authenticate(response,navigate(`/popcat-battle-project/getuser/${stateLogin.name}`))
         setStateLogin(
           {
             name: "",
@@ -83,11 +83,11 @@ function LoginComponent() {
   }
 
   useEffect(() => {
-    getUser() && navigate(`/leaderboard`)
+    getUser() && navigate(`/popcat-battle-project/leaderboard`)
   },[])
 
   return (
-    <div className="bg-image-1 h-[100vh] bg-top bg-cover">
+    <div className="bg-image-3 h-[100vh] bg-center bg-cover">
       <Navbar />
       <LeaderboardButton/>
       <div className="font-montserrat flex sm:justify-center sm:items-center sm:mt-[20px] sm:h-[70%]">
@@ -96,18 +96,19 @@ function LoginComponent() {
             <h1 className="font-bold text-[32px] font-sans text-black">Sign in</h1>
             <span className="text-[14px] text-black">Use your username</span>
             <form onSubmit={submitLoginForm}>
-              <input className="bg-[#eee] border-0 py-3 px-4 my-2 w-full" type="text" id="loginuser" name="username" placeholder="Username" required value={stateLogin.name} onChange={inputLoginValue("name")} /> <br />
+              <input className="bg-[#eee] border-0 py-3 px-4 mt-4 mb-2 w-full" type="text" id="loginuser" name="username" placeholder="Username" required value={stateLogin.name} onChange={inputLoginValue("name")} /> <br />
               <input className="bg-[#eee] border-0 py-3 px-4 my-2 w-full" type="password" id="loginpassword" name="password" placeholder="Password" required value={stateLogin.password} onChange={inputLoginValue("password")} /> <br />
-              <input className="rounded-[20px] border border-white text-white text-xs font-bold px-11 py-3 tracking-wider uppercase bg-[#FF4B2E] active:scale-95" type="submit" value="SIGN IN" />
+              <input className="rounded-[20px] border border-white text-white text-xs font-bold px-11 py-3 my-2 tracking-wider uppercase bg-[#524339] active:scale-95" type="submit" value="SIGN IN" />
             </form>
+              <p className="text-[14px] text-[#A3A79E] underline cursor-pointer" onClick={() => navigate(`/popcat-battle-project/`)}>Sign in as a Guest</p>
           </div>
-          <div className="md:w-1/2 text-center px-6 py-[15%] bg-gradient-to-r from-[#FF4B2B] to-[#FF416C] md:rounded-br-[10px] md:rounded-tr-[10px] justify-center">
+          <div className="md:w-1/2 text-center px-6 py-[15%] bg-[#524339] md:rounded-br-[10px] md:rounded-tr-[10px] justify-center">
             <h1 className="font-bold text-[25px] font-sans text-white">Still dont have an account?</h1>
             <span className="text-[14px] text-white">Register now</span>
             <form onSubmit={submitRegisForm}>
-              <input className="bg-white border-0 py-3 px-4 my-2 w-full" type="text" id="username" name="regisname" placeholder="Username" required value={stateRegis.name} onChange={inputRegisValue("name")} /> <br />
-              <input className="bg-white border-0 py-3 px-4 my-2 w-full" type="password" id="password" name="regispassword" placeholder="Password" required value={stateRegis.password} onChange={inputRegisValue("password")} /> <br />
-              <input className="rounded-[20px] border border-white text-white text-xs font-bold px-11 py-3 tracking-wider uppercase bg-[#FF4361] active:scale-95" type="submit" value="REGISTER" />
+              <input className="bg-white border-0 py-3 px-4 mt-4 mb-2 w-full" type="text" id="username" name="regisname" pattern="^[a-zA-Z0-9]+$" maxlength="10" placeholder="Username (characters or number)" required value={stateRegis.name} onChange={inputRegisValue("name")} /> <br />
+              <input className="bg-white border-0 py-3 px-4 my-2 w-full" type="password" id="password" name="regispassword" placeholder="Password (More than 4 digits)" required value={stateRegis.password} onChange={inputRegisValue("password")} minlength="4" /> <br />
+              <input className="rounded-[20px] border border-white text-[#524339] text-xs font-bold px-11 py-3 my-2 tracking-wider uppercase bg-[#C9BEAC] active:scale-95" type="submit" value="REGISTER" />
             </form>
           </div>
         </div>

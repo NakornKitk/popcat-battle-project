@@ -20,7 +20,7 @@ function Game() {
 
   useEffect(() => {
     if (!getUser()) {
-      navigate('/')
+      navigate('/popcat-battle-project/')
     }
 
     setLoading(true); // start loading
