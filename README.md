@@ -2,13 +2,13 @@
 
 Clicking battle website developed by using
 - **FrontEnd:** ReactJS, TailwindCSS
-- **BackEnd:** NodeJS,ExpressJS
+- **BackEnd:** NodeJS, ExpressJS
 - **Database:** MongoDB
 
 <br>
 
 Visit our website here.
-- [popcat-battle-project](https://popcat-battle-project.vercel.app/)
+- [popcat-clicks-battle-project](https://popcat-clicks-battle-project.onrender.com/)
 
 <br>
 
