@@ -10,9 +10,8 @@
     ],
     "rewrites": [
       {
-        "rewrites":  [
-          {"source": "/(.*)", "destination": "/"}
-       ]
+        "source": "/popcat-battle-project/(.*)",
+        "destination": "/popcat-battle-project/index.html"
       }
     ]
     
