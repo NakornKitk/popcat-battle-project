@@ -7,12 +7,12 @@ import GameComponent from "./components/GameComponent"
 
 const MyRoute = () => {
     return(
-        <BrowserRouter>
+        <BrowserRouter basename="/popcat-battle-project">
             <Routes>
-                <Route path="/popcat-battle-project/" element={<App />}/>
-                <Route path="/popcat-battle-project/login" element={<LoginComponent/>}/>
-                <Route path="/popcat-battle-project/leaderboard" element={<LeaderboardComponent/>}/>
-                <Route path="/popcat-battle-project/getuser/:slug" element={<GameComponent/>}/>
+                <Route path="/" element={<App />}/>
+                <Route path="/login" element={<LoginComponent/>}/>
+                <Route path="/leaderboard" element={<LeaderboardComponent/>}/>
+                <Route path="/getuser/:slug" element={<GameComponent/>}/>
             </Routes>
         </BrowserRouter>
     )
