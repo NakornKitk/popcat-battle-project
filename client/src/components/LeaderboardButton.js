@@ -5,7 +5,7 @@ function LeaderboardButton() {
   return (
     <div>
          <Link to="/leaderboard" className="z-10">
-            <button className="fixed bottom-[120px] right-[0px] h-[60px] w-[60px] bg-white rounded-md text-[40px] font-bold">&#127942;</button>
+            <button className="fixed bottom-[120px] right-[0px] h-[60px] w-[60px] bg-white rounded-l-lg text-[40px] font-bold">&#127942;</button>
         </Link>
     </div>
     

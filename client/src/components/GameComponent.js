@@ -6,16 +6,39 @@ import sound from '../sound/sound.wav'
 import Loading from './LoadingComponent.js'
 import { getUser, getToken } from '../services/authorize.js';
 import LeaderboardButton from './LeaderboardButton.js';
+import FooterComponent from './FooterComponent.js';
 
 
 
 function Game() {
-  let [user, setUser] = useState('')
-  const [leader, setLeader] = useState('')
-  const [isImageOne, setIsImageOne] = useState(true);
-  const [loading, setLoading] = useState(true);
   let params = useParams();
   const navigate = useNavigate();
+  let [user, setUser] = useState('')
+  const [leader, setLeader] = useState('')
+  const [leaders, setLeaders] = useState([])
+  const [isImageOne, setIsImageOne] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [toggleLeader, setToggleLeader] = useState(false);
+
+
+  const fetchTop20Data = () => {
+    axios.get(`${process.env.REACT_APP_API}/gettoptenleader`)
+      .then(response => {
+        setLeaders(response.data)
+      })
+      .catch(err => alert(err))
+  }
+
+  const fetchTop3Data = () => {
+    axios.get(`${process.env.REACT_APP_API}/gethighestleader`)
+      .then(response => {
+        setLeader(response.data)
+      })
+      .catch(err => alert(err))
+      .finally(() => {
+        setLoading(false); // End loading 
+      });
+  }
 
 
   useEffect(() => {
@@ -27,7 +50,7 @@ function Game() {
 
     axios.get(`${process.env.REACT_APP_API}/getuser/${params.slug}`,
       {
-        headers:{
+        headers: {
           authorization: `Bearer ${getToken()}`
         }
       }
@@ -39,15 +62,8 @@ function Game() {
         console.error('Error fetching data:', error);
       })
 
-    
-    axios.get(`${process.env.REACT_APP_API}/gethighestleader`)
-      .then(response => {
-        setLeader(response.data)
-      })
-      .catch(err => alert(err))
-      .finally(() => {
-        setLoading(false); // End loading 
-      });
+      fetchTop20Data()
+      fetchTop3Data()
   }, [])
 
 
@@ -55,21 +71,24 @@ function Game() {
     new Audio(url).play();
   }
 
+  function handleButton() {
+    setToggleLeader(!toggleLeader)
+  }
+
 
   const incrementClick = () => {
-    axios.put(`${process.env.REACT_APP_API}/add/${params.slug}`,{},
+    axios.put(`${process.env.REACT_APP_API}/add/${params.slug}`, {},
       {
-        headers:{
+        headers: {
           authorization: `Bearer ${getToken()}`
         }
       })
       .then(result => {
         setIsImageOne((prev) => !prev);
         playAudio(sound)
-
         axios.get(`${process.env.REACT_APP_API}/getuser/${params.slug}`,
           {
-            headers:{
+            headers: {
               authorization: `Bearer ${getToken()}`
             }
           })
@@ -80,11 +99,8 @@ function Game() {
             console.error('Error fetching data:', error);
           })
 
-        axios.get(`${process.env.REACT_APP_API}/gethighestleader`)
-          .then(response => {
-            setLeader(response.data)
-          })
-          .catch(err => alert(err))
+        fetchTop20Data()
+        fetchTop3Data()
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -94,19 +110,19 @@ function Game() {
   return (
     <div className={isImageOne ? 'bg-image-1 h-[100vh] bg-top bg-cover' : 'bg-image-2 h-[100vh] bg-top bg-cover'}>
       <Navbar />
-      <LeaderboardButton/>
+      <button className="fixed bottom-[120px] right-[0px] h-[60px] w-[60px] bg-white rounded-l-lg  text-[40px]" onClick={()=>window.history.back()}>&#128281;</button>
       {loading ? (<Loading />) : (
-        <div className="w-[100%] h-[65%] justify-between londrina-outline-regular" onClick={() => incrementClick()} >
-          <div className="px-[20px]">
-            <p className="text-start text-[30px] sm:text-[40px] w-[auto]">UserName: {user.name}</p>
+        <>
+          <div className="w-[100%] h-[80%] justify-between" onClick={() => incrementClick()} >
+            <div className="px-[20px] londrina-outline-regular">
+              <p className="text-start text-[30px] sm:text-[40px] w-[auto]">UserName: {user.name}</p>
+            </div>
+            <div className="londrina-outline-regular">
+              <p className="text-center text-[70px] pt-[30px]">{user.clicks}</p>
+            </div>
           </div>
-          <div className="">
-            <p className="text-center text-[70px] pt-[30px]">{user.clicks}</p>
-          </div>
-          <div className="text-3xl md:text-4xl w-[100%] bg-white fixed bottom-0">
-            <p className="text-center p-[10px]"> Highest clicks: <span className="text-[#9f463e]">{leader[0].clicks}</span> times by <span className="text-[#9f463e]">{leader[0].name}</span> </p>
-          </div>
-        </div>
+          <FooterComponent leader={leader} leaders={leaders} handleButton={handleButton} toggleLeader={toggleLeader} />
+        </>
       )}
     </div>
   );

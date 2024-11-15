@@ -21,10 +21,11 @@ function LeaderboardComponent() {
   return (
     <div className='bg-image-3 h-[100vh] bg-center bg-cover'>
       <Navbar />
-      <button className="z-10 fixed bottom-[120px] right-[0px] h-[60px] w-[60px] bg-white rounded-md text-[40px]" onClick={()=>window.history.back()}>&#128281;</button>
-      <div className="m-[auto] font-montserrat sm:mt-[40px] bg-white w-[80%] h-[70%] rounded-xl overflow-auto">
+      <button className="z-10 fixed bottom-[120px] right-[0px] h-[60px] w-[60px] bg-white rounded-l-lg  text-[40px]" onClick={()=>window.history.back()}>&#128281;</button>
+      <div className="m-[auto] font-montserrat sm:mt-[40px] bg-white w-[80%] h-[70%] rounded-xl overflow-hidden">
         <h1 className="font-bold text-start px-[20px] sm:px-[40px] py-[24px] text-[24px] sm:text-[36px] text-[#6D4534]">Leaderboard &#127942;</h1>
-        <table className="w-[100%] sm:text-[24px] px-[40px] text-center ">
+        <div className="overflow-y-auto h-[calc(100%-100px)]">
+        <table className="w-[100%] sm:text-[24px] px-[40px] text-center h-[100%]">
           <tr className="text-[#6D4534]">
             <th>Place</th>
             <th>Username</th>
@@ -39,8 +40,9 @@ function LeaderboardComponent() {
               </tr>
             ))
           }
-
         </table>
+
+        </div>
       </div>
     </div>
   )

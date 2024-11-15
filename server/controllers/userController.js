@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid')
 
 
 exports.gettoptenleader = async (req, res) => {
-    userModel.find({}).sort({ clicks: -1 }).limit(10).exec()
+    userModel.find({}).sort({ clicks: -1 }).limit(20).exec()
         .then((data) => {
             res.json(data)
         })
@@ -18,7 +18,7 @@ exports.gettoptenleader = async (req, res) => {
 
 
 exports.gethighestleader = async (req, res) => {
-    userModel.find({}).sort({ clicks: -1 }).limit(1).exec()
+    userModel.find({}).sort({ clicks: -1 }).limit(3).exec()
         .then((data) => {
             res.json(data)
         })
