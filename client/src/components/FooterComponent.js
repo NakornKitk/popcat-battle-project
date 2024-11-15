@@ -33,7 +33,7 @@ function FooterComponent(props) {
 
           {
             toggleLeader && (
-              <div className="w-[100%] h-[50%] sm:w-[60%] bg-white fixed bottom-0 mx-[auto] left-1/2 transform -translate-x-1/2 justify-between h-[60px] sm:rounded-t-2xl cursor-pointer py-[20px] transition-all duration-500" onClick={() => handleButton()}>
+              <div className="w-[100%] h-[50vh] sm:w-[60%] bg-white fixed bottom-0 mx-[auto] left-1/2 transform -translate-x-1/2 justify-between sm:rounded-t-2xl cursor-pointer py-[20px] transition-all duration-500" onClick={() => handleButton()}>
                 <div className="flex items-center justify-center pb-[5px] mx-[20px]">
                   <div className="w-[50px] border-r border-r-gray-200">
                     <p className="text-center ">&#127942;</p>
@@ -48,7 +48,7 @@ function FooterComponent(props) {
                   </div>
                 </div>
 
-                <div className="overflow-scroll max-h-[100%]">
+                <div className="overflow-y-auto max-h-[90%]">
                   {
                     leaders.map((users, index) => (
                       <div key={index} className="flex justify-center border-b border-b-gray-200 py-[5px] mx-[20px]">
